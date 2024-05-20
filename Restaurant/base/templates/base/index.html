@@ -1,7 +1,12 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
-<h1>hello world</h1> 
-
+<div>
+  <h2>Table List</h2>
+  <ul>
+    {% for table in tables %}
+      <li>{{ table.code }} <a href="#">Book This Table</a> </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

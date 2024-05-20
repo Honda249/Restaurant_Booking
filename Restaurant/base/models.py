@@ -34,11 +34,11 @@ class Reservation(models.Model):
         existing_reservations = Reservation.objects.filter(
             user=self.user,
             table=self.table,
-            reserv_date__date=reservation_date
+        #    reserv_date__date=reservation_date
         ).exclude(pk=self.pk)
 
         if existing_reservations.exists():
-            raise ValidationError('A reservation with the same user, date, and table already exists.')
+            raise ValidationError('A reservation with the same user and table already exists.')
 
     def save(self, *args, **kwargs):
         self.clean()
