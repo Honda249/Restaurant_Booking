@@ -1,8 +1,7 @@
 from django.urls import path        
-from . import views
+from .views import tabel_views
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('tables/', views.TableListView.as_view(), name='table list'),
+    path('tables/', tabel_views.IndexView.as_view(), name='Home'),
 ]

@@ -48,10 +48,3 @@ class Reservation(models.Model):
         return f'Reservation for {self.user.username} on {self.reserv_date}'
 
 
-#class Reservation(models.Model):
- #   user = models.ForeignKey(User, on_delete=models.CASCADE)
-  #  table = models.ForeignKey(Table, on_delete=models.CASCADE)
-   # reserv_date = models.DateTimeField("Date Of Reservation")
-
-    #def __str__(self):
-     #   return f'Reservation for {self.user.username} on {self.reserv_date}'
