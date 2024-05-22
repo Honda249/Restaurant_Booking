@@ -2,10 +2,9 @@
 <html>
 <head>
     <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
+        html, body {
             height: 100%;
         }
         body {
@@ -15,37 +14,32 @@
         .content {
             flex: 1;
         }
-        header, footer {
-            background-color: #f8f8f8;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-        .content {
-            padding: 20px;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>My Website</h1>
-        <nav>
-            <a href="/">Home</a>
-            <!-- Add more navigation links here -->
-        </nav>
+    <header class="bg-light py-3">
+        <div class="container">
+            <h1 class="text-center">My Website</h1>
+            <nav class="nav justify-content-center">
+                <a class="nav-link" href="/">Home</a>
+                <!-- Add more navigation links here -->
+            </nav>
+        </div>
     </header>
     
-    <div class="content">
+    <div class="content container mt-3">
         {% block content %}
         {% endblock %}
     </div>
     
-    <footer>
-        <p>&copy; 2024 My Website</p>
+    <footer class="bg-light py-3 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2024 My Website</p>
+        </div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

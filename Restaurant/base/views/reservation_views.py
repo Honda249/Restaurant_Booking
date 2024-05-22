@@ -1,10 +1,12 @@
-from django.shortcuts import render,get_object_or_404
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
 from base.models import Reservation
+from base.forms import ReservationForm
 
 # Create your views here.
-class IndexView(CreateView):
+
+class ReservationCreateView(CreateView):
     model = Reservation
-    template_name = 'base/index.html'
-    context_object_name = 'tables'
+    form_class = ReservationForm
+    template_name = 'base/reservation.html'
+    success_url = reverse_lazy('home')
