@@ -1,12 +1,23 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<div>
-  <h2>Table List</h2>
-  <ul>
+
+<h2>Table List</h2>
+
+
+<table>
+    <tr>
+      <th>
+        Tables
+      </th>
+      <th></th>
+    </tr>
     {% for table in tables %}
-      <li>{{ table.code }} <a href="#">Book This Table</a> </li>
-    {% endfor %}
-  </ul>
-</div>
+    <tr>
+      <td> {{ table.code }}  </td>
+      <td><a href="{% url 'table' table.id %}">View</a></td>
+    </tr>
+        {% endfor %}
+</table>
+
 {% endblock %}

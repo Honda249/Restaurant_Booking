@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<h1>Home Page</h1>
+<div class="container">
+    <div class="section">
+        <h2>Tables</h2>
+        <ul>
+            {% for table in tables %}
+                <li>Table Code: {{ table.code }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="section">
+        <h2>Reservations</h2>
+        <ul>
+            {% for reservation in reservations %}
+                <li>
+                    Reservation for {{ reservation.user.username }} on {{ reservation.reserv_date }} at Table {{ reservation.table.code }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
