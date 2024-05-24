@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="container mt-4">
+    <a href="{% url 'home' %}">Return Home</a>
     <h1>{% if form_type == 'Update' %}Update{% else %}Create{% endif %} Reservation</h1>
     <form method="post">
         {% csrf_token %}
