@@ -22,6 +22,7 @@
             {% for reservation in reservations %}
                 <li class="list-group-item">
                     Reservation for {{ reservation.user.username }} on {{ reservation.reserv_date }} at Table {{ reservation.table.code }}
+                    <a href="{% url 'update_reservation' reservation.pk %}" class="btn btn-sm btn-primary">Update</a>
                 </li>
                 
             {% endfor %}

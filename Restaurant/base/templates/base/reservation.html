@@ -1,14 +1,14 @@
 {% extends "main.html" %}
 
-{% block title %}Create Reservation{% endblock %}
+{% block title %}{% if form_type == 'Update' %}Update Reservation{% else %}Create Reservation{% endif %}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h1>Create Reservation</h1>
+    <h1>{% if form_type == 'Update' %}Update{% else %}Create{% endif %} Reservation</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{% if form_type == 'Update' %}Update{% else %}Submit{% endif %}</button>
     </form>
 </div>
 {% endblock %}
