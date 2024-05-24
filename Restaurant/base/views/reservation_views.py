@@ -1,7 +1,7 @@
-from django.views.generic import ListView, CreateView , UpdateView , DeleteView
+from django.views.generic import CreateView , UpdateView , DeleteView
 from django.urls import reverse_lazy
 from base.models import Reservation
-from base.forms import ReservationForm
+from base.forms.reservation_forms import ReservationForm
 
 # Create your views here.
 
