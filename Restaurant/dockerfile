@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.12.3
+FROM python:3.12
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -16,5 +16,5 @@ RUN pip install -r requirements.txt
 # Copy the current directory contents into the container at /code
 COPY . /code/
 
-# Run the Django server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "your_project_name.wsgi:application"]
+# Run the development server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
