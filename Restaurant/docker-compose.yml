@@ -11,7 +11,7 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn --bind 0.0.0.0:8000 Restaurant.wsgi:application
     volumes:
       - .:/code
     ports:
@@ -26,6 +26,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_HOST=db
       - POSTGRES_PORT=5432
+
 
 volumes:
   postgres_data:

@@ -5,6 +5,11 @@ FROM python:3.12
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nginx \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory in the container
 WORKDIR /code
 
@@ -17,4 +22,11 @@ RUN pip install -r requirements.txt
 COPY . /code/
 
 # Run the development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Configure Nginx
+COPY nginx.conf /etc/nginx/sites-available/default
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx and Gunicorn
+CMD service nginx start && gunicorn -c gunicorn_config.py Restaurant.wsgi:application
