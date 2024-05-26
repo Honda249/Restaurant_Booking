@@ -1,32 +1,16 @@
-# Use an official Python runtime as a parent image
 FROM python:3.12
 
-# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    nginx \
-    && rm -rf /var/lib/apt/lists/*
-
-# Set the working directory in the container
 WORKDIR /code
 
-# Install dependencies
 COPY requirements.txt /code/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Copy the current directory contents into the container at /code
 COPY . /code/
 
-# Run the development server
-# Configure Nginx
-COPY ./nginx/nginx.conf /etc/nginx/sites-available/default
+RUN python manage.py collectstatic --noinput
 
-# Expose port 80
-EXPOSE 80
-
-# Start Nginx and Gunicorn
-CMD service nginx start && gunicorn -c gunicorn_config.py Restaurant.wsgi:application
+CMD ["gunicorn", "-c", "gunicorn.conf.py", "Restaurant.wsgi:application"]

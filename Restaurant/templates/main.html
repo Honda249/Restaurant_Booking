@@ -23,7 +23,6 @@
             <nav class="nav justify-content-center">
                 <a class="nav-link" href="/">Home</a>
                 {% if user.is_authenticated %}
-                    <p>{{request.user}}</p>
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                     <a class="nav-link" href="{% url 'login' %}">Login</a>
