@@ -11,7 +11,7 @@ services:
 
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:8000 Restaurant.wsgi:application
+    command: gunicorn -c gunicorn.conf.py Restaurant.wsgi:application  # Use the configuration file here
     volumes:
       - .:/code
       - static_volume:/code/staticfiles
