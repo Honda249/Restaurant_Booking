@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.views.generic import ListView , DetailView
 from django.urls import reverse_lazy
 from base.models import Table , Reservation
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -12,7 +13,7 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tables'] = Table.objects.all()  # Fetch all tables
-        context['reservations'] = Reservation.objects.all()  # Fetch all reservations
+        context['reservations'] = Reservation.objects.filter(user=self.request.user)  # Fetch user reservations 
         return context
 
 class ListView(ListView):

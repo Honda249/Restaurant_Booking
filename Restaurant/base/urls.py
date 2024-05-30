@@ -7,8 +7,9 @@ from .views import tabel_views , reservation_views , auth_views
 
 urlpatterns = [
     #Auth Views
+    path('signup/', auth_views.SignUpView.as_view(), name='signup'),
     path('login/', auth_views.CustomLoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
 
     path('', tabel_views.HomePageView.as_view(), name='home'),  
     path('home', tabel_views.ListView.as_view(), name='index'),
