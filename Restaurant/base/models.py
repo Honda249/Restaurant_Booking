@@ -17,6 +17,7 @@ class Reservation(models.Model):
     reserv_date = models.DateTimeField("Date Of Reservation")
 
     def clean(self):
+
         # Get the time part of the reservation datetime
         reservation_time = self.reserv_date.time()
 

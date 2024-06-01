@@ -20,15 +20,15 @@
     <div class="col-md-6">
         <h2>Reservations</h2>
         <ul class="list-group">
-            {% for reservation in reservations %}
-                <li class="list-group-item">
-                    Reservation for {{ reservation.user.username }} on {{ reservation.reserv_date }} at Table {{ reservation.table.code }}
-                    <a href="{% url 'update_reservation' reservation.pk %}" class="btn btn-sm btn-success">Update</a>
-                    <a href="{% url 'delete_reservation' reservation.pk %}" class="btn btn-sm btn-danger">Delete</a>
-                </li>
-            {% empty %}
-                <li>No tables available.</li>    
-            {% endfor %}
+                {% for reservation in reservations %}
+                    <li class="list-group-item">
+                        Reservation for {{ reservation.user.username }} on {{ reservation.reserv_date }} at Table {{ reservation.table.code }}
+                        <a href="{% url 'update_reservation' reservation.pk %}" class="btn btn-sm btn-success">Update</a>
+                        <a href="{% url 'delete_reservation' reservation.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </li>
+                {% empty %}
+                    <li>No tables available.</li>    
+                {% endfor %}
             <a href="{% url 'reservation' %}" class="btn btn-primary">Create a Reservation</a>
 
         </ul>

@@ -13,16 +13,21 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tables'] = Table.objects.all()  # Fetch all tables
-        context['reservations'] = Reservation.objects.filter(user=self.request.user)  # Fetch user reservations 
+        
+        if self.request.user.is_authenticated:
+            context['reservations'] = Reservation.objects.filter(user=self.request.user)  # Fetch user reservations
+        else:
+            context['reservations'] = Reservation.objects.none()  # Empty queryset for anonymous users
+
         return context
 
-class ListView(ListView):
+class ListView(LoginRequiredMixin,ListView):
     model = Table
     template_name = 'base/index.html'
     context_object_name = 'tables'
 
 
-class DetailView(DetailView):
+class DetailView(LoginRequiredMixin,DetailView):
     model = Table
     template_name = 'base/table.html'
     context_object_name = 'table'
