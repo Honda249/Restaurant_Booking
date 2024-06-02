@@ -1,0 +1,17 @@
+<!-- templates/reservation_confirmation_email.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservation Confirmation</title>
+</head>
+<body>
+    <h1>Dear {{ user.username }},</h1>
+    <p>Thank you for your reservation.</p>
+    <p>Here are the details of your reservation:</p>
+    <ul>
+        <li>Table: {{ reservation.table }}</li>
+        <li>Date and Time: {{ reservation.reserv_date }}</li>
+    </ul>
+    <p>We look forward to serving you!</p>
+</body>
+</html>
