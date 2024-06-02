@@ -10,7 +10,10 @@
         <h2>Tables</h2>
         <ul class="list-group">
             {% for table in tables %}
-                <li class="list-group-item">Table Code: {{ table.code }}
+                <li class="list-group-item">
+                   <a href="{% url 'table' table.pk %}">
+                    Table Code: {{ table.code }}
+                   </a> 
                     <br>
                     Description:{{table.description}}
                 </li>
