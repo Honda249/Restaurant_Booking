@@ -6,10 +6,12 @@ from base.models import Reservation , Table
 from base.forms.reservation_forms import ReservationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
-
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.core.mail import send_mail
+from base.tasks import send_confirmation_email
+from django.http import HttpResponse
+
 
 
 # Create your views here.
@@ -32,17 +34,11 @@ class ReservationCreate(LoginRequiredMixin, CreateView):
        # print(f"Assigning user {self.request.user} to the reservation")
         form.save()  # Save the form data
        # return super(ReservationCreate, self).form_valid(form)
-
+        response = super().form_valid(form)
        # Send confirmation email
-        subject = 'Reservation Confirmation'
-        message = render_to_string('reservation_confirmation_email.html', {
-            'user': self.request.user,
-            'reservation': form.instance,
-        })
-        recipient = self.request.user.email
-        send_mail(subject, message, settings.EMAIL_HOST_USER, [recipient])
-        
-        return super().form_valid(form)
+        send_confirmation_email.delay(self.request.user.email, self.object.id)
+        return response
+       # return super().form_valid(form)
 
 
 class ReservationUpdate(LoginRequiredMixin,UpdateView):
@@ -56,3 +52,12 @@ class ReservationDelete(LoginRequiredMixin,DeleteView):
     model = Reservation
     template_name = 'base/delete-reservation.html'
     success_url = reverse_lazy('home') 
+
+def send_test_email(request):
+    send_mail(
+        'Test Email',
+        'This is a test email.',
+        'from@example.com',
+        ['honda.muneer@gmail.com'],
+    )
+    return HttpResponse('Test email sent.')

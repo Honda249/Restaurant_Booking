@@ -85,12 +85,37 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # E-mail Config
 
-EMAIL_BACKEND = os.getenv('EMAIL_BACKEND') 
-EMAIL_HOST = os.getenv('EMAIL_HOST') 
-EMAIL_PORT = os.getenv('EMAIL_PORT') 
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') 
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER') 
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
+#EMAIL_BACKEND = os.getenv('EMAIL_BACKEND') 
+#EMAIL_HOST = os.getenv('EMAIL_HOST') 
+#EMAIL_PORT = os.getenv('EMAIL_PORT') 
+#EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS') 
+#EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER') 
+#EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
+#DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # or any other backend you are using
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_PORT = 2525
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'daf3a5152c2216'
+EMAIL_HOST_PASSWORD = 'ebfb9f511b3039'
+DEFAULT_FROM_EMAIL = 'info@restaurant.com'  # Default from email address
+
+
+#Celery Config
+
+
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Bahrain'
+
 
 
 # Database

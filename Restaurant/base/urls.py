@@ -19,4 +19,8 @@ urlpatterns = [
     path('update-reservation/<int:pk>/', reservation_views.ReservationUpdate.as_view(), name='update_reservation'),
     path('delete-reservation/<int:pk>/', reservation_views.ReservationDelete.as_view(), name='delete_reservation'),
 
+    #Testing E-mail
+    path('send-test-email/', reservation_views.send_test_email, name='send_test_email'),
+
+
 ]
