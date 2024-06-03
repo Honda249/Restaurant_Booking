@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.forms import BaseModelForm
 from django.views.generic import CreateView , UpdateView , DeleteView
 from django.urls import reverse_lazy
-from base.models import Reservation
+from base.models import Reservation , Table
 from base.forms.reservation_forms import ReservationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
@@ -19,6 +19,13 @@ class ReservationCreate(LoginRequiredMixin, CreateView):
     form_class = ReservationForm
     template_name = 'base/reservation.html'
     success_url = reverse_lazy('home')
+
+    def get_initial(self):
+        initial = super().get_initial()
+        pk = self.kwargs.get('pk')
+        if pk:
+            initial['table'] = Table.objects.get(id=pk)
+        return initial
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -42,12 +49,8 @@ class ReservationUpdate(LoginRequiredMixin,UpdateView):
     model = Reservation
     form_class = ReservationForm
     template_name = 'base/reservation.html'
-    success_url = reverse_lazy('home')  # Redirect after successful form submission
+    success_url = reverse_lazy('home')  
 
-   # def get_context_data(self, **kwargs):
-    #    context = super().get_context_data(**kwargs)
-     #   context['form_type'] = 'Update'
-      #  return context
 
 class ReservationDelete(LoginRequiredMixin,DeleteView):
     model = Reservation
