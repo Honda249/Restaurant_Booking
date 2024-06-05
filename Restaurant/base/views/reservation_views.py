@@ -32,8 +32,8 @@ class ReservationCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
        # print(f"Assigning user {self.request.user} to the reservation")
-        form.save()  # Save the form data
        # return super(ReservationCreate, self).form_valid(form)
+        form.save()  # Save the form data
         response = super().form_valid(form)
        # Send confirmation email
         send_confirmation_email.delay(self.request.user.email, self.object.id)

@@ -93,9 +93,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
 #DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
-# settings.py
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # or any other backend you are using
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
 EMAIL_PORT = 2525
 EMAIL_USE_TLS = True

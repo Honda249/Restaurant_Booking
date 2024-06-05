@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Confirmation</title>
+    </head>
+<body>
+    <h1>Reservation Confirmation for {{ user.username }}</h1>
+    <p>Dear {{ user.username }},</p>
+    <p>This email confirms your reservation at {{ restaurant_name }} (if applicable).</p>
+    <p>**Reservation Details:**</p>
+    <ul>
+        <li>Date: {{ reservation.reserv_date.strftime("%Y-%m-%d") }}</li>
+        <li>Time: {{ reservation.reserv_date.strftime("%H:%M") }}</li>
+        <li>Table: {{ reservation.table }}</li>
+    </ul>
+    <p>**Additional Information:** (Optional)</p>
+    <p>If you need to modify or cancel your reservation, please contact us at {{ phone_number }} (if applicable) or reply to this email.</p>
+    <p>Thank you for choosing {{ restaurant_name }}!</p>
+    </body>
+</html>

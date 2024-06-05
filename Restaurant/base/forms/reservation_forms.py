@@ -5,7 +5,7 @@ class ReservationForm(forms.ModelForm):
 
     class Meta:
         model = Reservation
-        fields = ['user','table', 'reserv_date']
+        fields = '__all__'  
         widgets = {
             'reserv_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
