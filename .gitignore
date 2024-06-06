@@ -8,6 +8,6 @@ env/
 
 # Ignore compiled Python files
 .pyc
-
+__pycache__
 # Ignore environment configuration files
 .env
