@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY'),
+SECRET_KEY = os.getenv('SECRET_KEY'),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -93,14 +93,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
 #DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  
-EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-EMAIL_PORT = 2525
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'daf3a5152c2216'
-EMAIL_HOST_PASSWORD = 'ebfb9f511b3039'
-DEFAULT_FROM_EMAIL = 'info@restaurant.com'  # Default from email address
+EMAIL_HOST_USER = 'hissen.mohaned@gmail.com' 
+EMAIL_HOST_PASSWORD = 'lrutxwruenpeibol'  
+DEFAULT_FROM_EMAIL = 'info@restaurant.com'  
+
 
 
 #Celery Config
